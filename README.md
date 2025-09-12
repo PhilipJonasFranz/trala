@@ -93,6 +93,10 @@ environment:
   log_level: info
   traefik:
     api_host: http://traefik:8080
+    enable_basic_auth: true
+    basic_auth:
+      username: user
+      password: pass  
 
 # Icon customization
 icons:
@@ -126,13 +130,16 @@ services:
 
 Supported environment variables are shown below.
 
-| Variable                   | Description                                                                                             | Default                                | Required |
-| -------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------- | -------- |
-| `traefik_api_host`         | The full base URL of your Traefik API. From within Docker, this is typically `http://traefik:8080`.        | `(none)`                               | **Yes** |
-| `selfhst_icon_url`         | Base URL of the Selfhst icon endpoint. Customize if you are hosting your own local instance. | `https://cdn.jsdelivr.net/gh/selfhst/icons/`                               | No |
-| `refresh_interval_seconds` | The interval in seconds at which the service list automatically refreshes.                                | `30`                                   | No       |
-| `search_engine_url`        | The URL for the external search engine. The search query will be appended to this URL.                    | `https://www.google.com/search?q=`     | No       |
-| `log_level`                | Set to `debug` for verbose logging of the icon-finding process. Any other value is silent.              | `info`                                 | No       |
+| Variable                      | Description                                                                                             | Default                                      | Required |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- | -------------------------------------------- | -------- |
+| `traefik_api_host`            | The full base URL of your Traefik API. From within Docker, this is typically `http://traefik:8080`.     | `(none)`                                     | **Yes**  |
+| `traefik_enable_basic_auth`   | Enables basic-auth if the Traefik API endpoint requires authentication.                                 | `false`                                      | No       |
+| `traefik_basic_auth_username` | Username for the basic-auth of the Traefik API if enabled.                                              | `(none)`                                     | No       |
+| `traefik_basic_auth_password` | Password for the basic-auth of the Traefik API if enabled.                                              | `(none)`                                     | No       |
+| `selfhst_icon_url`            | Base URL of the Selfhst icon endpoint. Customize if you are hosting your own local instance.            | `https://cdn.jsdelivr.net/gh/selfhst/icons/` | No       |
+| `refresh_interval_seconds`    | The interval in seconds at which the service list automatically refreshes.                              | `30`                                         | No       |
+| `search_engine_url`           | The URL for the external search engine. The search query will be appended to this URL.                  | `https://www.google.com/search?q=`           | No       |
+| `log_level`                   | Set to `debug` for verbose logging of the icon-finding process. Any other value is silent.              | `info`                                       | No       |
 
 ### Icon Overrides
 
